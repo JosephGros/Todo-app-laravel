@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [TodoController::class, 'index'])->name('dashboard');
+    Route::get('/todo', [TodoController::class, 'create'])->name('todo.create');
+    Route::post('/todo', [TodoController::class, 'store'])->name('todo.store');
+    Route::get('/todo{id}', [TodoController::class, 'edit'])->name('todo.edit');
+    Route::patch('/todo{id}', [TodoController::class, 'update'])->name('todo.update');
+    Route::delete('/todo{id}', [TodoController::class, 'destroy'])->name('todo.destroy');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

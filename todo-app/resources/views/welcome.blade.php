@@ -6,12 +6,15 @@
                     Välkommen till TODO sidan. Starta din lista genom att logga in eller registrera dig nu!
 
                     <br>
-                    <x-primary-button class="m3">
-                    <a href="{{ route('login') }}">Logga in</a>
+
+                    <x-primary-button class="ms-3">
+                        <a href="{{ route('login') }}">Logga in</a>
                     </x-primary-button>
-                    <x-primary-button class="m3">
-                    <a href="{{ route('register') }}">Registrera</a>
+                    
+                    <x-primary-button class="ms-3">
+                        <a href="{{ route('register') }}">Registrera</a>
                     </x-primary-button>
+
                 </div>
             </div>
         </div>
